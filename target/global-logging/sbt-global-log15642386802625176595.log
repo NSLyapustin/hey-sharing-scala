@@ -1,0 +1,281 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(compile, None, None)[0m
+[0m[[0m[33mwarn[0m] [0m[0mbuild source files have changed[0m
+[0m[[0m[33mwarn[0m] [0m[0mmodified files: [0m
+[0m[[0m[33mwarn[0m] [0m[0m  /Users/n.lyapustin/IdeaProjects/hey-sharing/build.sbt[0m
+[0m[[0m[33mwarn[0m] [0m[0mApply these changes by running `reload`.[0m
+[0m[[0m[33mwarn[0m] [0m[0mAutomatically reload the build when source changes are detected by setting `Global / onChangedBuildSource := ReloadOnSourceChanges`.[0m
+[0m[[0m[33mwarn[0m] [0m[0mDisable this warning by setting `Global / onChangedBuildSource := IgnoreSourceChanges`.[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / compile[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /Users/n.lyapustin/IdeaProjects/hey-sharing/target/scala-2.13/classes ...[0m
+[0m[[0m[0minfo[0m] [0m[0mNon-compiled module 'compiler-bridge_2.13' for Scala 2.13.8. Compiling...[0m
+[0m[[0m[0minfo[0m] [0m[0m  Compilation completed in 4.054s.[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/Server.scala:3:13: object effect is not a member of package cats[0m
+[0m[[0m[31merror[0m] [0m[0mimport cats.effect._[0m
+[0m[[0m[31merror[0m] [0m[0m            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/Server.scala:5:23: not found: type IOApp[0m
+[0m[[0m[31merror[0m] [0m[0mobject Server extends IOApp {[0m
+[0m[[0m[31merror[0m] [0m[0m                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/Server.scala:6:41: not found: type IO[0m
+[0m[[0m[31merror[0m] [0m[0m  override def run(args: List[String]): IO[ExitCode] = ???[0m
+[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:4:13: object effect is not a member of package cats[0m
+[0m[[0m[31merror[0m] [0m[0mimport cats.effect.Sync[0m
+[0m[[0m[31merror[0m] [0m[0m            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:6:11: object circe is not a member of package io[0m
+[0m[[0m[31merror[0m] [0m[0mimport io.circe.generic.auto._[0m
+[0m[[0m[31merror[0m] [0m[0m          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:7:11: object circe is not a member of package io[0m
+[0m[[0m[31merror[0m] [0m[0mimport io.circe.syntax._[0m
+[0m[[0m[31merror[0m] [0m[0m          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:8:12: object http4s is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.http4s.circe._[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:9:12: object http4s is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.http4s.dsl.Http4sDsl[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:10:12: object http4s is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.http4s.{EntityDecoder, HttpRoutes}[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:12:8: not found: object domain[0m
+[0m[[0m[31merror[0m] [0m[0mimport domain._[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:13:8: not found: object domain[0m
+[0m[[0m[31merror[0m] [0m[0mimport domain.users._[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:14:8: not found: object domain[0m
+[0m[[0m[31merror[0m] [0m[0mimport domain.authentication._[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:15:8: not found: object tsec[0m
+[0m[[0m[31merror[0m] [0m[0mimport tsec.common.Verified[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:16:8: not found: object tsec[0m
+[0m[[0m[31merror[0m] [0m[0mimport tsec.jwt.algorithms.JWTMacAlgo[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:17:8: not found: object tsec[0m
+[0m[[0m[31merror[0m] [0m[0mimport tsec.passwordhashers.{PasswordHash, PasswordHasher}[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:18:8: not found: object tsec[0m
+[0m[[0m[31merror[0m] [0m[0mimport tsec.authentication._[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:20:62: not found: type Http4sDsl[0m
+[0m[[0m[31merror[0m] [0m[0mclass UserEndpoints[F[_]: Sync, A, Auth: JWTMacAlgo] extends Http4sDsl[F] {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:20:27: not found: type Sync[0m
+[0m[[0m[31merror[0m] [0m[0mclass UserEndpoints[F[_]: Sync, A, Auth: JWTMacAlgo] extends Http4sDsl[F] {[0m
+[0m[[0m[31merror[0m] [0m[0m                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:20:42: not found: type JWTMacAlgo[0m
+[0m[[0m[31merror[0m] [0m[0mclass UserEndpoints[F[_]: Sync, A, Auth: JWTMacAlgo] extends Http4sDsl[F] {[0m
+[0m[[0m[31merror[0m] [0m[0m                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:21:10: not found: value Pagination[0m
+[0m[[0m[31merror[0m] [0m[0m  import Pagination._[0m
+[0m[[0m[31merror[0m] [0m[0m         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:25:29: not found: type EntityDecoder[0m
+[0m[[0m[31merror[0m] [0m[0m  implicit val userDecoder: EntityDecoder[F, User] = jsonOf[0m
+[0m[[0m[31merror[0m] [0m[0m                            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:25:54: not found: value jsonOf[0m
+[0m[[0m[31merror[0m] [0m[0m  implicit val userDecoder: EntityDecoder[F, User] = jsonOf[0m
+[0m[[0m[31merror[0m] [0m[0m                                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:26:33: not found: type EntityDecoder[0m
+[0m[[0m[31merror[0m] [0m[0m  implicit val loginReqDecoder: EntityDecoder[F, LoginRequest] = jsonOf[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:26:66: not found: value jsonOf[0m
+[0m[[0m[31merror[0m] [0m[0m  implicit val loginReqDecoder: EntityDecoder[F, LoginRequest] = jsonOf[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:28:34: not found: type EntityDecoder[0m
+[0m[[0m[31merror[0m] [0m[0m  implicit val signupReqDecoder: EntityDecoder[F, SignupRequest] = jsonOf[0m
+[0m[[0m[31merror[0m] [0m[0m                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:28:68: not found: value jsonOf[0m
+[0m[[0m[31merror[0m] [0m[0m  implicit val signupReqDecoder: EntityDecoder[F, SignupRequest] = jsonOf[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:34:31: not found: type HttpRoutes[0m
+[0m[[0m[31merror[0m] [0m[0m                           ): HttpRoutes[F] =[0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:31:43: not found: type UserService[0m
+[0m[[0m[31merror[0m] [0m[0m                             userService: UserService[F],[0m
+[0m[[0m[31merror[0m] [0m[0m                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:32:44: not found: type PasswordHasher[0m
+[0m[[0m[31merror[0m] [0m[0m                             cryptService: PasswordHasher[F, A],[0m
+[0m[[0m[31merror[0m] [0m[0m                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:33:36: not found: type Authenticator[0m
+[0m[[0m[31merror[0m] [0m[0m                             auth: Authenticator[F, Long, User, AugmentedJWT[Auth, Long]],[0m
+[0m[[0m[31merror[0m] [0m[0m                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:35:5: not found: value HttpRoutes[0m
+[0m[[0m[31merror[0m] [0m[0m    HttpRoutes.of[F] { case req @ POST -> Root / "login" =>[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:35:35: not found: value POST[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifiers that begin with uppercase are not pattern variables but match the value in scope.[0m
+[0m[[0m[31merror[0m] [0m[0m    HttpRoutes.of[F] { case req @ POST -> Root / "login" =>[0m
+[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:35:48: not found: value /[0m
+[0m[[0m[31merror[0m] [0m[0m    HttpRoutes.of[F] { case req @ POST -> Root / "login" =>[0m
+[0m[[0m[31merror[0m] [0m[0m                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:35:43: not found: value Root[0m
+[0m[[0m[31merror[0m] [0m[0m    HttpRoutes.of[F] { case req @ POST -> Root / "login" =>[0m
+[0m[[0m[31merror[0m] [0m[0m                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:37:39: not found: type LoginRequest[0m
+[0m[[0m[31merror[0m] [0m[0m        login <- EitherT.liftF(req.as[LoginRequest])[0m
+[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:37:38: missing argument list for method as in trait Ops[0m
+[0m[[0m[31merror[0m] [0m[0mUnapplied methods are only converted to functions when a function type is expected.[0m
+[0m[[0m[31merror[0m] [0m[0mYou can make this conversion explicit by writing `as _` or `as(_)` instead of `as`.[0m
+[0m[[0m[31merror[0m] [0m[0m        login <- EitherT.liftF(req.as[LoginRequest])[0m
+[0m[[0m[31merror[0m] [0m[0m                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:62:32: not found: type HttpRoutes[0m
+[0m[[0m[31merror[0m] [0m[0m                            ): HttpRoutes[F] =[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:60:44: not found: type UserService[0m
+[0m[[0m[31merror[0m] [0m[0m                              userService: UserService[F],[0m
+[0m[[0m[31merror[0m] [0m[0m                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:61:38: not found: type PasswordHasher[0m
+[0m[[0m[31merror[0m] [0m[0m                              crypt: PasswordHasher[F, A],[0m
+[0m[[0m[31merror[0m] [0m[0m                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:63:5: not found: value HttpRoutes[0m
+[0m[[0m[31merror[0m] [0m[0m    HttpRoutes.of[F] { case req @ POST -> Root =>[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:63:35: not found: value POST[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifiers that begin with uppercase are not pattern variables but match the value in scope.[0m
+[0m[[0m[31merror[0m] [0m[0m    HttpRoutes.of[F] { case req @ POST -> Root =>[0m
+[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:63:43: not found: value Root[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifiers that begin with uppercase are not pattern variables but match the value in scope.[0m
+[0m[[0m[31merror[0m] [0m[0m    HttpRoutes.of[F] { case req @ POST -> Root =>[0m
+[0m[[0m[31merror[0m] [0m[0m                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:65:26: not found: type SignupRequest[0m
+[0m[[0m[31merror[0m] [0m[0m        signup <- req.as[SignupRequest][0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:65:25: missing argument list for method as in trait Ops[0m
+[0m[[0m[31merror[0m] [0m[0mUnapplied methods are only converted to functions when a function type is expected.[0m
+[0m[[0m[31merror[0m] [0m[0mYou can make this conversion explicit by writing `as _` or `as(_)` instead of `as`.[0m
+[0m[[0m[31merror[0m] [0m[0m        signup <- req.as[SignupRequest][0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:78:60: not found: type AuthEndpoint[0m
+[0m[[0m[31merror[0m] [0m[0m  private def updateEndpoint(userService: UserService[F]): AuthEndpoint[F, Auth] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:78:43: not found: type UserService[0m
+[0m[[0m[31merror[0m] [0m[0m  private def updateEndpoint(userService: UserService[F]): AuthEndpoint[F, Auth] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:79:35: not found: value asAuthed[0m
+[0m[[0m[31merror[0m] [0m[0m    case req @ PUT -> Root / name asAuthed _ =>[0m
+[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:79:16: not found: value PUT[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifiers that begin with uppercase are not pattern variables but match the value in scope.[0m
+[0m[[0m[31merror[0m] [0m[0m    case req @ PUT -> Root / name asAuthed _ =>[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:79:28: not found: value /[0m
+[0m[[0m[31merror[0m] [0m[0m    case req @ PUT -> Root / name asAuthed _ =>[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:79:23: not found: value Root[0m
+[0m[[0m[31merror[0m] [0m[0m    case req @ PUT -> Root / name asAuthed _ =>[0m
+[0m[[0m[31merror[0m] [0m[0m                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:81:32: not found: type User[0m
+[0m[[0m[31merror[0m] [0m[0m        user <- req.request.as[User][0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:92:58: not found: type AuthEndpoint[0m
+[0m[[0m[31merror[0m] [0m[0m  private def listEndpoint(userService: UserService[F]): AuthEndpoint[F, Auth] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:92:41: not found: type UserService[0m
+[0m[[0m[31merror[0m] [0m[0m  private def listEndpoint(userService: UserService[F]): AuthEndpoint[F, Auth] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:95:7: not found: value asAuthed[0m
+[0m[[0m[31merror[0m] [0m[0m    ) asAuthed _ =>[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:93:59: not found: value :?[0m
+[0m[[0m[31merror[0m] [0m[0m    case GET -> Root :? OptionalPageSizeMatcher(pageSize) :? OptionalOffsetMatcher([0m
+[0m[[0m[31merror[0m] [0m[0m                                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:93:22: not found: value :?[0m
+[0m[[0m[31merror[0m] [0m[0m    case GET -> Root :? OptionalPageSizeMatcher(pageSize) :? OptionalOffsetMatcher([0m
+[0m[[0m[31merror[0m] [0m[0m                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:93:10: not found: value GET[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifiers that begin with uppercase are not pattern variables but match the value in scope.[0m
+[0m[[0m[31merror[0m] [0m[0m    case GET -> Root :? OptionalPageSizeMatcher(pageSize) :? OptionalOffsetMatcher([0m
+[0m[[0m[31merror[0m] [0m[0m         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:93:17: not found: value Root[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifiers that begin with uppercase are not pattern variables but match the value in scope.[0m
+[0m[[0m[31merror[0m] [0m[0m    case GET -> Root :? OptionalPageSizeMatcher(pageSize) :? OptionalOffsetMatcher([0m
+[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:93:25: not found: value OptionalPageSizeMatcher[0m
+[0m[[0m[31merror[0m] [0m[0m    case GET -> Root :? OptionalPageSizeMatcher(pageSize) :? OptionalOffsetMatcher([0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:93:62: not found: value OptionalOffsetMatcher[0m
+[0m[[0m[31merror[0m] [0m[0m    case GET -> Root :? OptionalPageSizeMatcher(pageSize) :? OptionalOffsetMatcher([0m
+[0m[[0m[31merror[0m] [0m[0m                                                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:102:66: not found: type AuthEndpoint[0m
+[0m[[0m[31merror[0m] [0m[0m  private def searchByNameEndpoint(userService: UserService[F]): AuthEndpoint[F, Auth] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:102:49: not found: type UserService[0m
+[0m[[0m[31merror[0m] [0m[0m  private def searchByNameEndpoint(userService: UserService[F]): AuthEndpoint[F, Auth] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:103:33: not found: value asAuthed[0m
+[0m[[0m[31merror[0m] [0m[0m    case GET -> Root / userName asAuthed _ =>[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:103:10: not found: value GET[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifiers that begin with uppercase are not pattern variables but match the value in scope.[0m
+[0m[[0m[31merror[0m] [0m[0m    case GET -> Root / userName asAuthed _ =>[0m
+[0m[[0m[31merror[0m] [0m[0m         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:103:22: not found: value /[0m
+[0m[[0m[31merror[0m] [0m[0m    case GET -> Root / userName asAuthed _ =>[0m
+[0m[[0m[31merror[0m] [0m[0m                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:103:17: not found: value Root[0m
+[0m[[0m[31merror[0m] [0m[0m    case GET -> Root / userName asAuthed _ =>[0m
+[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:110:64: not found: type AuthEndpoint[0m
+[0m[[0m[31merror[0m] [0m[0m  private def deleteUserEndpoint(userService: UserService[F]): AuthEndpoint[F, Auth] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:110:47: not found: type UserService[0m
+[0m[[0m[31merror[0m] [0m[0m  private def deleteUserEndpoint(userService: UserService[F]): AuthEndpoint[F, Auth] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:111:36: not found: value asAuthed[0m
+[0m[[0m[31merror[0m] [0m[0m    case DELETE -> Root / userName asAuthed _ =>[0m
+[0m[[0m[31merror[0m] [0m[0m                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:111:10: not found: value DELETE[0m
+[0m[[0m[31merror[0m] [0m[0mIdentifiers that begin with uppercase are not pattern variables but match the value in scope.[0m
+[0m[[0m[31merror[0m] [0m[0m    case DELETE -> Root / userName asAuthed _ =>[0m
+[0m[[0m[31merror[0m] [0m[0m         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:111:25: not found: value /[0m
+[0m[[0m[31merror[0m] [0m[0m    case DELETE -> Root / userName asAuthed _ =>[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:111:20: not found: value Root[0m
+[0m[[0m[31merror[0m] [0m[0m    case DELETE -> Root / userName asAuthed _ =>[0m
+[0m[[0m[31merror[0m] [0m[0m                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:122:19: not found: type HttpRoutes[0m
+[0m[[0m[31merror[0m] [0m[0m               ): HttpRoutes[F] = {[0m
+[0m[[0m[31merror[0m] [0m[0m                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:119:31: not found: type UserService[0m
+[0m[[0m[31merror[0m] [0m[0m                 userService: UserService[F],[0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:120:32: not found: type PasswordHasher[0m
+[0m[[0m[31merror[0m] [0m[0m                 cryptService: PasswordHasher[F, A],[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:121:24: not found: type SecuredRequestHandler[0m
+[0m[[0m[31merror[0m] [0m[0m                 auth: SecuredRequestHandler[F, Long, User, AugmentedJWT[Auth, Long]],[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:123:24: not found: type AuthService[0m
+[0m[[0m[31merror[0m] [0m[0m    val authEndpoints: AuthService[F, Auth] =[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:124:7: not found: value Auth[0m
+[0m[[0m[31merror[0m] [0m[0m      Auth.adminOnly {[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:144:52: not found: type HttpRoutes[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ): HttpRoutes[F] =[0m
+[0m[[0m[31merror[0m] [0m[0m                                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:141:64: not found: type UserService[0m
+[0m[[0m[31merror[0m] [0m[0m                                                  userService: UserService[F],[0m
+[0m[[0m[31merror[0m] [0m[0m                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:142:65: not found: type PasswordHasher[0m
+[0m[[0m[31merror[0m] [0m[0m                                                  cryptService: PasswordHasher[F, A],[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:143:57: not found: type SecuredRequestHandler[0m
+[0m[[0m[31merror[0m] [0m[0m                                                  auth: SecuredRequestHandler[F, Long, User, AugmentedJWT[Auth, Long]],[0m
+[0m[[0m[31merror[0m] [0m[0m                                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:140:23: not found: type Sync[0m
+[0m[[0m[31merror[0m] [0m[0m  def endpoints[F[_]: Sync, A, Auth: JWTMacAlgo]([0m
+[0m[[0m[31merror[0m] [0m[0m                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/n.lyapustin/IdeaProjects/hey-sharing/src/main/scala/ru/com/itis/infrastucture/endpoint/UserEndpoints.scala:140:38: not found: type JWTMacAlgo[0m
+[0m[[0m[31merror[0m] [0m[0m  def endpoints[F[_]: Sync, A, Auth: JWTMacAlgo]([0m
+[0m[[0m[31merror[0m] [0m[0m                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m84 errors found[0m
+[0m[[0m[0mdebug[0m] [0m[0mForcing garbage collection...[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mcompileIncremental[0m) Compilation failed[0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 6 s, completed 5 мая 2022 г., 19:19:46[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(idea-shell, None, None)[0m
