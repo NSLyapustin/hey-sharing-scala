@@ -1,6 +1,6 @@
-package ru.com.itis.domain.rent
+package domain.rent
 
-import ru.com.itis.domain.product.Period
+import domain.product.Period
 import java.util.Date
 
 case class Rent(

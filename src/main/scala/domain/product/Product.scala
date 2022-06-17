@@ -1,7 +1,7 @@
-package ru.com.itis.domain.product
+package domain.product
 
-import ru.com.itis.domain.rent.Rent
-import ru.com.itis.domain.user.User
+import domain.rent.Rent
+import domain.user.User
 
 case class Product(
   id: Long,

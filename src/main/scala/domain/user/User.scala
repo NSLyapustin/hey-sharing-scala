@@ -1,9 +1,9 @@
-package ru.com.itis.domain.user
+package domain.user
 
 case class User(
   id: Long,
   username: String,
-  hash: String,
+  email: String,
   role: Role,
   products: List[Product],
   favoriteProducts: List[Product]
