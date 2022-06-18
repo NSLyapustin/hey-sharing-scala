@@ -1,16 +1,19 @@
 package domain.user
 
+import cats.Applicative
+import tsec.authorization.AuthorizationInfo
+
 case class User(
-  id: Long,
-  username: String,
-  email: String,
-  role: Role,
-  products: List[Product],
-  favoriteProducts: List[Product]
+    username: String,
+    email: String,
+    hashPassword: String,
+    id: Option[Long] = None,
+    role: Role
 )
 
-sealed trait Role {
-  case object Admin extends Role
-  case object Moder extends Role
-  case object Default extends Role
+object User {
+  implicit def authRole[F[_]](implicit F: Applicative[F]): AuthorizationInfo[F, Role, User] =
+    new AuthorizationInfo[F, Role, User] {
+      def fetchInfo(u: User): F[Role] = F.pure(u.role)
+    }
 }
