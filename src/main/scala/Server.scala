@@ -19,23 +19,11 @@ object Server extends IOApp {
       txnEc <- ExecutionContexts.cachedThreadPool[F]
       xa <- DatabaseConfig.dbTransactor(conf.db, connEc, Blocker.liftExecutionContext(txnEc))
       key <- Resource.eval(HMACSHA256.generateKey[F])
-      authRepo = DoobieAuthRepositoryInterpreter[F, HMACSHA256](key, xa)
-      userRepo = DoobieUserRepositoryInterpreter[F](xa)
-      bookRepo = DoobieBookRepositoryInterpreter[F](xa)
-      userValidation = UserValidationInterpreter[F](userRepo)
-      bookValidation = BookValidationInterpreter[F](bookRepo)
-      userService = UserService[F](userRepo, userValidation)
-      bookService = BookService[F](bookRepo, bookValidation)
-      authenticator = Auth.jwtAuthenticator[F, HMACSHA256](key, authRepo, userRepo)
-      routeAuth = SecuredRequestHandler(authenticator)
       httpApp = Router(
-        "/users" -> UserEndpoints
-          .endpoints[F, BCrypt, HMACSHA256](userService, BCrypt.syncPasswordHasher[F], routeAuth),
-        "/books" -> BookEndpoints.endpoints[F, HMACSHA256](bookService, routeAuth)
       ).orNotFound
       _ <- Resource.eval(DatabaseConfig.initializeDb(conf.db))
       server <- BlazeServerBuilder[F](serverEc)
-        .bindHttp(conf.server.port, conf.server.host)
+        .bindHttp(conf.serverConfig.port, conf.serverConfig.host)
         .withHttpApp(httpApp)
         .resource
     } yield server
