@@ -20,7 +20,7 @@ object Auth {
                                                        userRepo: IdentityStore[F, Long, User],
                                                      )(implicit cv: JWSMacCV[F, Auth]): JWTAuthenticator[F, Long, User, Auth] =
     JWTAuthenticator.backed.inBearerToken(
-      expiryDuration = 1.hour,
+      expiryDuration = 100.hour,
       maxIdle = None,
       tokenStore = authRepo,
       identityStore = userRepo,

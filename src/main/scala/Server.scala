@@ -11,9 +11,10 @@ import config._
 import config.psDec
 import domain.Auth
 import domain.user.UserValidationInterpreter
+import domain.item._
 import domain.users.UserService
-import infrastructure.endpoint.UserEndpoints
-import infrastructure.repository.{DoobieAuthRepositoryInterpreter, DoobieUserRepositoryInterpreter}
+import infrastructure.endpoint.{ItemEndpoints, UserEndpoints}
+import infrastructure.repository.{DoobieAuthRepositoryInterpreter, DoobieItemRepositoryInterpreter, DoobieUserRepositoryInterpreter}
 
 object Server extends IOApp {
   def createServer[F[_]: ContextShift: ConcurrentEffect: Timer]: Resource[F, H4Server[F]] =
@@ -28,9 +29,13 @@ object Server extends IOApp {
       userRepo = DoobieUserRepositoryInterpreter[F](xa)
       userValidation = UserValidationInterpreter[F](userRepo)
       userService = UserService[F](userRepo, userValidation)
+      itemRepo = DoobieItemRepositoryInterpreter[F](xa)
+      itemValidation = ItemValidationInterpreter(itemRepo)
+      itemService = ItemService(itemRepo, itemValidation)
       authenticator = Auth.jwtAuthenticator[F, HMACSHA256](key, authRepo, userRepo)
       routeAuth = SecuredRequestHandler(authenticator)
       httpApp = Router(
+        "/items" -> ItemEndpoints.endpoints[F, HMACSHA256](itemService, routeAuth),
         "/users" -> UserEndpoints
           .endpoints[F, BCrypt, HMACSHA256](userService, BCrypt.syncPasswordHasher[F], routeAuth),
       ).orNotFound
