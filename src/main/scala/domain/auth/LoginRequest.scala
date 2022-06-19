@@ -11,13 +11,12 @@ final case class LoginRequest(
 final case class SignupRequest(
                                 username: String,
                                 email: String,
-                                password: String,
-                                role: Role
+                                password: String
                               ) {
   def asUser[A](hashedPassword: PasswordHash[A]): User = User(
     username,
     email,
     hashedPassword.toString,
-    role = role
+    role = Role.Default
   )
 }

@@ -25,7 +25,6 @@ class UserEndpoints[F[_] : Sync, A, Auth: JWTMacAlgo] extends Http4sDsl[F] {
 
   implicit val userDecoder: EntityDecoder[F, User] = jsonOf
   implicit val loginReqDecoder: EntityDecoder[F, LoginRequest] = jsonOf
-
   implicit val signupReqDecoder: EntityDecoder[F, SignupRequest] = jsonOf
 
   private def loginEndpoint(

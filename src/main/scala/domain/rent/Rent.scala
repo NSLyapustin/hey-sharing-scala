@@ -1,6 +1,6 @@
 package domain.rent
 
-import domain.product.Period
+import domain.item.Period
 import java.util.Date
 
 case class Rent(
