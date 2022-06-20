@@ -8,6 +8,6 @@ object Pagination {
   import QueryParamDecoder._
 
   /* Parses out the optional offset and page size params */
-  object OptionalPageSizeMatcher extends OptionalQueryParamDecoderMatcher[Int]("pageSize")
+  object OptionalPageSizeMatcher extends OptionalQueryParamDecoderMatcher[Int]("limit")
   object OptionalOffsetMatcher extends OptionalQueryParamDecoderMatcher[Int]("offset")
 }

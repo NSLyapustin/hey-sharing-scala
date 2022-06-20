@@ -1,9 +1,13 @@
 package domain.item
 
-final case class Status(statusRepl: String)
+import enumeratum._
 
-object Status {
-  val AwaitingConfirmation: Status = Status("AwaitingConfirmation")
-  val AtTheReceptionPoint: Status = Status("AtTheReceptionPoint")
-  val AtTheTenant: Status = Status("AtTheTenant")
+sealed trait ItemStatus extends EnumEntry
+
+case object ItemStatus extends Enum[ItemStatus] with CirceEnum[ItemStatus] {
+  case object AwaitingConfirmation extends ItemStatus
+  case object AtTheReceptionPoint extends ItemStatus
+  case object AtTheTenant extends ItemStatus
+
+  val values = findValues
 }

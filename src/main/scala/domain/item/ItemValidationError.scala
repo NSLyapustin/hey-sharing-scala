@@ -1,5 +1,6 @@
 package domain.item
 
-sealed trait ItemValidationError extends Product with Serializable
+trait ItemValidationError extends Product with Serializable
 case object ItemNotFoundError extends ItemValidationError
+case object UpdateNotAllowed extends ItemValidationError
 
