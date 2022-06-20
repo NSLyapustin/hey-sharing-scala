@@ -1,13 +1,17 @@
 package domain.item
 
-final case class Category(categoryRepl: String)
+import enumeratum._
 
-object Category {
-  val Vehicle: Category = Category("Vehicle")
-  val Appliances: Category = Category("Appliances")
-  val Electronics: Category = Category("Electronics")
-  val Furniture: Category = Category("Furniture")
-  val HobbiesAndLeisure: Category = Category("HobbiesAndLeisure")
-  val Clothes: Category = Category("Clothes")
-  val Other: Category = Category("Other")
+sealed trait Category extends EnumEntry
+
+case object Category extends Enum[Category] with CirceEnum[Category] {
+  case object Vehicle extends Category
+  case object Appliances extends Category
+  case object Electronics extends Category
+  case object Furniture extends Category
+  case object HobbiesAndLeisure extends Category
+  case object Clothes extends Category
+  case object Other extends Category
+
+  val values = findValues
 }

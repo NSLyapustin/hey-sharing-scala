@@ -6,12 +6,19 @@ import cats.implicits.catsSyntaxOptionId
 import domain.item._
 import doobie._
 import doobie.implicits._
+import infrastructure.repository.SQLPagination.paginate
 import tsec.authentication.IdentityStore
-import tsec.jws.JWSSerializer
-import tsec.jws.mac.{JWSMacCV, JWSMacHeader}
-import tsec.mac.jca.{MacErrorM, MacSigningKey}
 
 private object ItemSQL {
+  implicit val StatusMeta: Meta[ItemStatus] =
+    Meta[String].imap(ItemStatus.withName)(_.entryName)
+
+  implicit val CategoryMeta: Meta[Category] =
+    Meta[String].imap(Category.withName)(_.entryName)
+
+  implicit val PeriodMeta: Meta[Period] =
+    Meta[String].imap(Period.withName)(_.entryName)
+
   def insert(item: Item, userId: Long): Update0 = sql"""
     INSERT INTO ITEMS (NAME, PRICE, DURATION, IMAGE, COUNT_OF_VIEWS, DESCRIPTION, CATEGORY, STATUS, ADDRESS, USER_ID)
     VALUES (${item.name}, ${item.price}, ${item.period}, ${item.image}, ${item.countOfViews}, ${item.description}, ${item.category}, ${item.status}, ${item.address}, ${userId})
@@ -31,6 +38,19 @@ private object ItemSQL {
         USER_ID = ${id}
     WHERE ID = $id
 """.update
+
+  def select(itemId: Long): Query0[Item] =
+    sql"""
+      SELECT ID, NAME, PRICE, DURATION, IMAGE, COUNT_OF_VIEWS, DESCRIPTION, CATEGORY, STATUS, ADDRESS, USER_ID
+      FROM ITEMS
+      WHERE ID = $itemId
+    """.query
+
+  val selectAll: Query0[Item] =
+    sql"""
+      SELECT ID, NAME, PRICE, DURATION, IMAGE, COUNT_OF_VIEWS, DESCRIPTION, CATEGORY, STATUS, ADDRESS, USER_ID
+      FROM ITEMS
+    """.query
 }
 class DoobieItemRepositoryInterpreter[F[_]: Bracket[*[_], Throwable]](val xa: Transactor[F])
   extends ItemRepositoryAlgebra[F]
@@ -45,9 +65,9 @@ class DoobieItemRepositoryInterpreter[F[_]: Bracket[*[_], Throwable]](val xa: Tr
 
   override def findByName(itemName: String): OptionT[F, Item] = ???
 
-  override def list(pageSize: Int, offset: Int): F[List[Item]] = ???
+  override def list(pageSize: Int, offset: Int): F[List[Item]] = paginate(pageSize, offset)(selectAll).to[List].transact(xa)
 
-  override def get(id: Long): OptionT[F, Item] = ???
+  override def get(id: Long): OptionT[F, Item] = OptionT(select(id).option.transact(xa))
 }
 
 object DoobieItemRepositoryInterpreter {

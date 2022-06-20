@@ -12,6 +12,6 @@ case class Item(
   countOfViews: Double,
   description: String,
   category: Category,
-  status: Status,
+  status: ItemStatus,
   address: String
 )

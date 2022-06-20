@@ -1,12 +1,14 @@
 package domain.item
 
-final case class Period(periodRepl: String)
+import enumeratum._
 
-object Period {
-  val Day: Period = Period("Day")
-  val Week: Period = Period("Week")
-  val Month: Period = Period("Month")
+sealed trait Period extends EnumEntry
 
-  def getRepr(p: Period): String = p.periodRepl
+case object Period extends Enum[Period] with CirceEnum[Period] {
+  case object Day extends Period
+  case object Week extends Period
+  case object Month extends Period
+
+  val values = findValues
 }
 
