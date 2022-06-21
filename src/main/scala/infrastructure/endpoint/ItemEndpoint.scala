@@ -1,13 +1,13 @@
 package infrastructure.endpoint
 
-import cats.data.EitherT
 import cats.effect.Sync
 import cats.syntax.all._
 import domain.Auth
-import domain.item.{Category, Item, ItemNotFoundError, ItemService, ItemStatus, Period}
+import domain.item.{Category, Item, ItemNotFoundError, ItemService, ItemStatus}
+import domain.rent.Period
 import domain.user.{User, UserNotFoundError}
 import infrastructure.endpoint.Pagination.{OptionalOffsetMatcher, OptionalPageSizeMatcher}
-import org.http4s.{EntityDecoder, HttpRoutes, Method, QueryParamDecoder}
+import org.http4s.{EntityDecoder, HttpRoutes, QueryParamDecoder}
 import org.http4s.circe._
 import org.http4s.dsl.Http4sDsl
 import io.circe.generic.auto._
@@ -15,9 +15,6 @@ import org.http4s.circe.CirceEntityCodec.circeEntityEncoder
 import tsec.authentication.{AugmentedJWT, SecuredRequestHandler, asAuthed}
 import tsec.jwt.algorithms.JWTMacAlgo
 import io.circe.syntax._
-import enumeratum._
-import org.http4s.Method.UPDATE
-import org.http4s.blaze.http.HttpService
 
 class ItemEndpoints[F[_]: Sync, Auth: JWTMacAlgo] extends Http4sDsl[F] {
   implicit val itemDecoder: EntityDecoder[F, Item] = jsonOf
@@ -76,7 +73,7 @@ class ItemEndpoints[F[_]: Sync, Auth: JWTMacAlgo] extends Http4sDsl[F] {
                                 ): AuthEndpoint[F, Auth] = {
     case req @ PUT -> Root / LongVar(id) asAuthed user =>
       user.id match {
-        case Some(id) => {
+        case Some(id) =>
           val result = for {
             item <- req.request.as[Item]
             result <- itemService.update(item, id).value
@@ -85,7 +82,6 @@ class ItemEndpoints[F[_]: Sync, Auth: JWTMacAlgo] extends Http4sDsl[F] {
             case Right(item) => Ok(item)
             case Left(_) => Forbidden()
           }
-        }
         case None => NotFound(UserNotFoundError)
       }
   }
