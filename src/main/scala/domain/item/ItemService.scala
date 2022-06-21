@@ -13,11 +13,11 @@ class ItemService[F[_]: Monad](itemRepo: ItemRepositoryAlgebra[F], validation: I
 
   def get(itemId: Long): EitherT[F, ItemNotFoundError.type, Item] = itemRepo.get(itemId).toRight(ItemNotFoundError)
 
-//  def update(item: Item, userId: Long): EitherT[F, ItemValidationError, Item] =
-//    for {
-//      error <- validation.canUpdate(item.id, userId)
-//      saved <- itemRepo.update(item).toRight(error)
-//    } yield saved
+  def update(item: Item, userId: Long): EitherT[F, UpdateNotAllowed.type, Item] =
+    for {
+      _ <- validation.canUpdate(item.id, userId)
+      saved <- itemRepo.update(item, userId).toRight(UpdateNotAllowed)
+    } yield saved
 }
 
 object ItemService {

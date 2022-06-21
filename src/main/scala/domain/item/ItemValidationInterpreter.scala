@@ -18,19 +18,19 @@ class ItemValidationInterpreter[F[_]: Applicative](itemRepo: ItemRepositoryAlgeb
       }
     }
 
-  override def canUpdate(itemId: Option[Long], userId: Long): EitherT[F, ItemValidationError, Unit] =
+  override def canUpdate(itemId: Option[Long], userId: Long): EitherT[F, UpdateNotAllowed.type, Unit] =
     EitherT {
       itemId match {
         case Some(id) => itemRepo.get(id).value.map {
           case Some(item) => if ((userId == item.id.getOrElse(-1))) {
-            Either.right[ItemValidationError, Unit](())
+            Either.right[UpdateNotAllowed.type, Unit](())
           } else {
-            Either.left[ItemValidationError, Unit](UpdateNotAllowed)
+            Either.left[UpdateNotAllowed.type , Unit](UpdateNotAllowed)
           }
-          case _ => Left[ItemNotFoundError.type, Unit](ItemNotFoundError)
+          case _ => Left[UpdateNotAllowed.type, Unit](UpdateNotAllowed)
         }
         case _ =>
-          Either.left[ItemValidationError, Unit](ItemNotFoundError).pure[F]
+          Either.left[UpdateNotAllowed.type, Unit](UpdateNotAllowed).pure[F]
       }
     }
 }

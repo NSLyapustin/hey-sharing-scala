@@ -2,7 +2,7 @@ package infrastructure.repository
 
 import cats.data.OptionT
 import cats.effect.Bracket
-import cats.implicits.catsSyntaxOptionId
+import cats.implicits.{catsSyntaxOptionId, toFunctorOps}
 import domain.item._
 import doobie._
 import doobie.implicits._
@@ -36,7 +36,7 @@ private object ItemSQL {
         STATUS = ${item.status},
         ADDRESS = ${item.address},
         USER_ID = ${id}
-    WHERE ID = $id
+    WHERE ID = ${item.id}
 """.update
 
   def select(itemId: Long): Query0[Item] =
@@ -61,7 +61,10 @@ class DoobieItemRepositoryInterpreter[F[_]: Bracket[*[_], Throwable]](val xa: Tr
     .withUniqueGeneratedKeys[Long](columns = "id")
     .map(id => item.copy(id = id.some)).transact(xa)
 
-  override def update(item: Item): OptionT[F, Item] = ???
+  override def update(item: Item, userId: Long): OptionT[F, Item] = OptionT
+    .fromOption[ConnectionIO](item.id)
+    .semiflatMap(id => ItemSQL.update(item, userId).run.as(item))
+    .transact(xa)
 
   override def findByName(itemName: String): OptionT[F, Item] = ???
 

@@ -7,7 +7,7 @@ import domain.Auth
 import domain.item.{Category, Item, ItemNotFoundError, ItemService, ItemStatus, Period}
 import domain.user.{User, UserNotFoundError}
 import infrastructure.endpoint.Pagination.{OptionalOffsetMatcher, OptionalPageSizeMatcher}
-import org.http4s.{EntityDecoder, HttpRoutes, QueryParamDecoder}
+import org.http4s.{EntityDecoder, HttpRoutes, Method, QueryParamDecoder}
 import org.http4s.circe._
 import org.http4s.dsl.Http4sDsl
 import io.circe.generic.auto._
@@ -71,12 +71,24 @@ class ItemEndpoints[F[_]: Sync, Auth: JWTMacAlgo] extends Http4sDsl[F] {
       } yield resp
   }
   
-//  private def updateItemEndpoint(
-//                                itemService: ItemService[F]
-//                                ): AuthEndpoint[F, Auth] = {
-//    case req @ UPDATE -> Root / LongVar(id) asAuthed user =>
-//      itemService.update
-//  }
+  private def updateItemEndpoint(
+                                itemService: ItemService[F]
+                                ): AuthEndpoint[F, Auth] = {
+    case req @ PUT -> Root / LongVar(id) asAuthed user =>
+      user.id match {
+        case Some(id) => {
+          val result = for {
+            item <- req.request.as[Item]
+            result <- itemService.update(item, id).value
+          } yield result
+          result.flatMap {
+            case Right(item) => Ok(item)
+            case Left(_) => Forbidden()
+          }
+        }
+        case None => NotFound(UserNotFoundError)
+      }
+  }
 
   def endpoints(
                  itemService: ItemService[F],
@@ -85,6 +97,7 @@ class ItemEndpoints[F[_]: Sync, Auth: JWTMacAlgo] extends Http4sDsl[F] {
     val authEndpoints: AuthService[F, Auth] = {
       val allRoles =
         createItemEndpoint(itemService)
+          .orElse(updateItemEndpoint(itemService))
 
       Auth.allRoles { allRoles }
     }
