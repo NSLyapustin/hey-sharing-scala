@@ -7,7 +7,6 @@ case class Item(
   id: Option[Long] = None,
   name: String,
   price: Double,
-  period: Period,
   image: String,
   countOfViews: Double,
   description: String,

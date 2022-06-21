@@ -4,6 +4,7 @@ import cats.data.OptionT
 import cats.effect.Bracket
 import cats.implicits.{catsSyntaxOptionId, toFunctorOps}
 import domain.item._
+import domain.rent.Period
 import doobie._
 import doobie.implicits._
 import infrastructure.repository.SQLPagination.paginate
@@ -16,19 +17,15 @@ private object ItemSQL {
   implicit val CategoryMeta: Meta[Category] =
     Meta[String].imap(Category.withName)(_.entryName)
 
-  implicit val PeriodMeta: Meta[Period] =
-    Meta[String].imap(Period.withName)(_.entryName)
-
   def insert(item: Item, userId: Long): Update0 = sql"""
-    INSERT INTO ITEMS (NAME, PRICE, DURATION, IMAGE, COUNT_OF_VIEWS, DESCRIPTION, CATEGORY, STATUS, ADDRESS, USER_ID)
-    VALUES (${item.name}, ${item.price}, ${item.period}, ${item.image}, ${item.countOfViews}, ${item.description}, ${item.category}, ${item.status}, ${item.address}, ${userId})
+    INSERT INTO ITEMS (NAME, PRICE, IMAGE, COUNT_OF_VIEWS, DESCRIPTION, CATEGORY, STATUS, ADDRESS, USER_ID)
+    VALUES (${item.name}, ${item.price}, ${item.image}, ${item.countOfViews}, ${item.description}, ${item.category}, ${item.status}, ${item.address}, ${userId})
 """.update
 
   def update(item: Item, id: Long): Update0 = sql"""
     UPDATE ITEMS
     SET NAME = ${item.name},
         PRICE = ${item.price},
-        DURATION = ${item.period},
         IMAGE = ${item.image},
         COUNT_OF_VIEWS = ${item.countOfViews},
         DESCRIPTION = ${item.description},
@@ -41,16 +38,23 @@ private object ItemSQL {
 
   def select(itemId: Long): Query0[Item] =
     sql"""
-      SELECT ID, NAME, PRICE, DURATION, IMAGE, COUNT_OF_VIEWS, DESCRIPTION, CATEGORY, STATUS, ADDRESS, USER_ID
+      SELECT ID, NAME, PRICE, IMAGE, COUNT_OF_VIEWS, DESCRIPTION, CATEGORY, STATUS, ADDRESS, USER_ID
       FROM ITEMS
       WHERE ID = $itemId
     """.query
 
   val selectAll: Query0[Item] =
     sql"""
-      SELECT ID, NAME, PRICE, DURATION, IMAGE, COUNT_OF_VIEWS, DESCRIPTION, CATEGORY, STATUS, ADDRESS, USER_ID
+      SELECT ID, NAME, PRICE, IMAGE, COUNT_OF_VIEWS, DESCRIPTION, CATEGORY, STATUS, ADDRESS, USER_ID
       FROM ITEMS
     """.query
+
+  def updateStatus(itemId: Long, newStatus: ItemStatus): Update0 =
+    sql"""
+        UPDATE ITEMS
+        SET STATUS = ${newStatus}
+        WHERE ID = $itemId
+       """.update
 }
 class DoobieItemRepositoryInterpreter[F[_]: Bracket[*[_], Throwable]](val xa: Transactor[F])
   extends ItemRepositoryAlgebra[F]
@@ -66,11 +70,11 @@ class DoobieItemRepositoryInterpreter[F[_]: Bracket[*[_], Throwable]](val xa: Tr
     .semiflatMap(id => ItemSQL.update(item, userId).run.as(item))
     .transact(xa)
 
-  override def findByName(itemName: String): OptionT[F, Item] = ???
-
   override def list(pageSize: Int, offset: Int): F[List[Item]] = paginate(pageSize, offset)(selectAll).to[List].transact(xa)
 
   override def get(id: Long): OptionT[F, Item] = OptionT(select(id).option.transact(xa))
+
+  override def findByName(itemName: String): OptionT[F, Item] = ???
 }
 
 object DoobieItemRepositoryInterpreter {

@@ -1,13 +1,10 @@
 package domain.rent
 
-import domain.item.Period
 import java.util.Date
 
 case class Rent(
-  id: Long,
-  fromDate: Date,
-  toDate: Date,
+  id: Option[Long],
   periodType: Period,
-  countOfPeriod: Integer,
+  countOfPeriod: Int,
   productID: Long
 )

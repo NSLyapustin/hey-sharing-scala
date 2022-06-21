@@ -12,9 +12,10 @@ import config.psDec
 import domain.Auth
 import domain.user.UserValidationInterpreter
 import domain.item._
+import domain.rent.{RentService, RentValidationInterpreter}
 import domain.users.UserService
-import infrastructure.endpoint.{ItemEndpoints, UserEndpoints}
-import infrastructure.repository.{DoobieAuthRepositoryInterpreter, DoobieItemRepositoryInterpreter, DoobieUserRepositoryInterpreter}
+import infrastructure.endpoint.{ItemEndpoints, RentEndpoints, UserEndpoints}
+import infrastructure.repository.{DoobieAuthRepositoryInterpreter, DoobieItemRepositoryInterpreter, DoobieRentRepositoryInterpreter, DoobieUserRepositoryInterpreter}
 
 object Server extends IOApp {
   def createServer[F[_]: ContextShift: ConcurrentEffect: Timer]: Resource[F, H4Server[F]] =
@@ -32,9 +33,13 @@ object Server extends IOApp {
       itemRepo = DoobieItemRepositoryInterpreter[F](xa)
       itemValidation = ItemValidationInterpreter(itemRepo)
       itemService = ItemService(itemRepo, itemValidation)
+      rentRepo = DoobieRentRepositoryInterpreter[F](xa)
+      rentValidation = RentValidationInterpreter(itemRepo)
+      rentService = RentService(rentRepo, rentValidation, itemService)
       authenticator = Auth.jwtAuthenticator[F, HMACSHA256](key, authRepo, userRepo)
       routeAuth = SecuredRequestHandler(authenticator)
       httpApp = Router(
+        "/rent" -> RentEndpoints.endpoints[F, HMACSHA256](rentService, routeAuth),
         "/items" -> ItemEndpoints.endpoints[F, HMACSHA256](itemService, routeAuth),
         "/users" -> UserEndpoints
           .endpoints[F, BCrypt, HMACSHA256](userService, BCrypt.syncPasswordHasher[F], routeAuth),

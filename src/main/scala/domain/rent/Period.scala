@@ -1,4 +1,4 @@
-package domain.item
+package domain.rent
 
 import enumeratum._
 

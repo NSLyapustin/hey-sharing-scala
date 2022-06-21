@@ -18,6 +18,8 @@ class ItemService[F[_]: Monad](itemRepo: ItemRepositoryAlgebra[F], validation: I
       _ <- validation.canUpdate(item.id, userId)
       saved <- itemRepo.update(item, userId).toRight(UpdateNotAllowed)
     } yield saved
+
+  def updateStatus(itemId: Long, newStatus: ItemStatus) = itemRepo
 }
 
 object ItemService {
