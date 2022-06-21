@@ -1,4 +1,4 @@
-package domain.item
+package domain.item.Models
 
 import enumeratum._
 

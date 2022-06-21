@@ -1,9 +1,10 @@
-package domain.item
+package domain.item.Service
 
-import cats.{Functor, Monad}
-import cats.data.EitherT.liftF
-import cats.data.{EitherT, OptionT}
-import domain.user.User
+import cats.Monad
+import cats.data.EitherT
+import domain.item.Models.{Item, ItemStatus}
+import domain.item.Repo.ItemRepositoryAlgebra
+import domain.item.Validation.{ItemNotFoundError, ItemValidationAlgebra, UpdateNotAllowed}
 
 class ItemService[F[_]: Monad](itemRepo: ItemRepositoryAlgebra[F], validation: ItemValidationAlgebra[F]) {
   def createItem(item: Item, userId: Long)(implicit M: Monad[F]): F[Item] = itemRepo.create(item, userId)

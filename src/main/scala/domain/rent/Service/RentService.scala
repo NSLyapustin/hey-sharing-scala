@@ -1,10 +1,13 @@
-package domain.rent
+package domain.rent.Service
 
-import cats.syntax.all._
 import cats.Monad
-import cats.data.{EitherT, OptionT}
-import domain.item.{ItemService}
-import domain.item.ItemStatus.AtTheTenant
+import cats.data.EitherT
+import cats.syntax.all._
+import domain.item.Models.ItemStatus.AtTheTenant
+import domain.item.Service.ItemService
+import domain.rent.Models.Rent
+import domain.rent.Repo.RentRepositoryAlgebra
+import domain.rent.Validation.{CannotRentItem, RentValidationAlgebra}
 
 class RentService[F[_]: Monad](rentRepo: RentRepositoryAlgebra[F], itemService: ItemService[F], validation: RentValidationAlgebra[F]) {
   def createRent(rent: Rent, itemId: Long, userId: Long): EitherT[F, CannotRentItem.type, Rent] =

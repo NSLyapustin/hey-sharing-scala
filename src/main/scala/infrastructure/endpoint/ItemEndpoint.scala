@@ -3,9 +3,12 @@ package infrastructure.endpoint
 import cats.effect.Sync
 import cats.syntax.all._
 import domain.Auth
-import domain.item.{Category, Item, ItemNotFoundError, ItemService, ItemStatus}
-import domain.rent.Period
-import domain.user.{User, UserNotFoundError}
+import domain.item.Models.{Category, Item, ItemStatus}
+import domain.item.Service.ItemService
+import domain.item.Validation.ItemNotFoundError
+import domain.rent.Models.Period
+import domain.user.Models.User
+import domain.user.Validation.UserNotFoundError
 import infrastructure.endpoint.Pagination.{OptionalOffsetMatcher, OptionalPageSizeMatcher}
 import org.http4s.{EntityDecoder, HttpRoutes, QueryParamDecoder}
 import org.http4s.circe._
@@ -71,7 +74,7 @@ class ItemEndpoints[F[_]: Sync, Auth: JWTMacAlgo] extends Http4sDsl[F] {
   private def updateItemEndpoint(
                                 itemService: ItemService[F]
                                 ): AuthEndpoint[F, Auth] = {
-    case req @ PUT -> Root / LongVar(id) asAuthed user =>
+    case req @ PUT -> Root asAuthed user =>
       user.id match {
         case Some(id) =>
           val result = for {

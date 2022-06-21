@@ -1,9 +1,11 @@
-package domain.users
+package domain.user.Service
 
-import cats.{Functor, Monad}
 import cats.data.EitherT
 import cats.implicits._
-import domain.user._
+import cats.{Functor, Monad}
+import domain.user.Models.User
+import domain.user.Repo.UserRepositoryAlgebra
+import domain.user.Validation.{UserAlreadyExistsError, UserNotFoundError, UserValidationAlgebra}
 
 class UserService[F[_]](userRepo: UserRepositoryAlgebra[F], validation: UserValidationAlgebra[F]) {
   def createUser(user: User)(implicit M: Monad[F]): EitherT[F, UserAlreadyExistsError, User] =

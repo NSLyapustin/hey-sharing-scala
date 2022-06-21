@@ -1,9 +1,9 @@
-package domain.rent
+package domain.rent.Validation
 
-import cats.syntax.all._
 import cats.Applicative
 import cats.data.EitherT
-import domain.item.{Item, ItemRepositoryAlgebra, UpdateNotAllowed}
+import cats.syntax.all._
+import domain.item.Repo.ItemRepositoryAlgebra
 
 class RentValidationInterpreter[F[_]: Applicative](itemRepo: ItemRepositoryAlgebra[F])
   extends RentValidationAlgebra[F] {

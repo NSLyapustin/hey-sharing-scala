@@ -1,8 +1,9 @@
-package domain.item
+package domain.item.Validation
 
 import cats.Applicative
 import cats.data.EitherT
 import cats.syntax.all._
+import domain.item.Repo.ItemRepositoryAlgebra
 
 class ItemValidationInterpreter[F[_]: Applicative](itemRepo: ItemRepositoryAlgebra[F]) extends ItemValidationAlgebra[F] {
   override def exists(itemId: Option[Long]): EitherT[F, ItemNotFoundError.type, Unit] =
@@ -22,7 +23,7 @@ class ItemValidationInterpreter[F[_]: Applicative](itemRepo: ItemRepositoryAlgeb
     EitherT {
       itemId match {
         case Some(id) => itemRepo.get(id).value.map {
-          case Some(item) => if ((userId == item.id.getOrElse(-1))) {
+          case Some(item) => if ((userId == item.userId.getOrElse(-1))) {
             Either.right[UpdateNotAllowed.type, Unit](())
           } else {
             Either.left[UpdateNotAllowed.type , Unit](UpdateNotAllowed)

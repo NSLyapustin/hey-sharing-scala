@@ -1,6 +1,6 @@
-package domain.user
+package domain.user.Validation
 
-import domain.user.User
+import domain.user.Models.User
 
 sealed trait ValidationError extends Product with Serializable
 case object UserNotFoundError extends ValidationError

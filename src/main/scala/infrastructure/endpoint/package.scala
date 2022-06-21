@@ -1,6 +1,6 @@
 package infrastructure
 
-import domain.user.User
+import domain.user.Models.User
 import org.http4s.Response
 import tsec.authentication.{AugmentedJWT, SecuredRequest, TSecAuthService}
 

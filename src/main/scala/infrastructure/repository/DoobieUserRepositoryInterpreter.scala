@@ -3,11 +3,12 @@ package infrastructure.repository
 import cats.data.OptionT
 import cats.effect.Bracket
 import cats.syntax.all._
+import domain.user.Models.{Role, User}
+import domain.user.Repo.UserRepositoryAlgebra
 import doobie._
 import doobie.implicits._
 import io.circe.parser.decode
 import io.circe.syntax._
-import domain.user.{Role, User, UserRepositoryAlgebra}
 import infrastructure.repository.SQLPagination.paginate
 import tsec.authentication.IdentityStore
 

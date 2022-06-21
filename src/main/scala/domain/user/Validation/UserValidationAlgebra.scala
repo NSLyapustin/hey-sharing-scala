@@ -1,7 +1,7 @@
-package domain.user
+package domain.user.Validation
 
 import cats.data.EitherT
-import domain.user.{UserAlreadyExistsError, UserNotFoundError}
+import domain.user.Models.User
 
 trait UserValidationAlgebra[F[_]] {
   def doesNotExist(user: User): EitherT[F, UserAlreadyExistsError, Unit]

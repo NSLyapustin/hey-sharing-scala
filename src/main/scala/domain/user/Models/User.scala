@@ -1,4 +1,4 @@
-package domain.user
+package domain.user.Models
 
 import cats.Applicative
 import tsec.authorization.AuthorizationInfo

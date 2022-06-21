@@ -1,6 +1,6 @@
 package domain.auth
 
-import domain.user.{User, Role}
+import domain.user.Models.{Role, User}
 import tsec.passwordhashers.PasswordHash
 
 final case class LoginRequest(

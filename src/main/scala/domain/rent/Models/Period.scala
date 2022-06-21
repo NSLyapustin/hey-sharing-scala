@@ -1,4 +1,4 @@
-package domain.rent
+package domain.rent.Models
 
 import enumeratum._
 

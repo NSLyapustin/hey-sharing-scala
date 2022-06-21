@@ -3,8 +3,10 @@ package infrastructure.repository
 import cats.data.OptionT
 import cats.effect.Bracket
 import cats.implicits.{catsSyntaxOptionId, toFunctorOps}
+import domain.item.Models.{Category, Item, ItemStatus}
+import domain.item.Repo.ItemRepositoryAlgebra
 import domain.item._
-import domain.rent.Period
+import domain.rent.Models.Period
 import doobie._
 import doobie.implicits._
 import infrastructure.repository.SQLPagination.paginate

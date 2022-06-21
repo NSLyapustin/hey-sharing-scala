@@ -3,9 +3,10 @@ package infrastructure.repository
 import cats.data.OptionT
 import cats.effect.Bracket
 import cats.implicits.catsSyntaxOptionId
+import domain.rent.Models.{Period, Rent}
+import domain.rent.Repo.RentRepositoryAlgebra
 import doobie._
 import doobie.implicits._
-import domain.rent.{Period, Rent, RentRepositoryAlgebra}
 import doobie.implicits.toSqlInterpolator
 import tsec.authentication.IdentityStore
 

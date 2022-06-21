@@ -1,6 +1,7 @@
-package domain.item
+package domain.item.Repo
 
 import cats.data.OptionT
+import domain.item.Models.Item
 
 trait ItemRepositoryAlgebra[F[_]] {
   def create(item: Item, userId: Long): F[Item]

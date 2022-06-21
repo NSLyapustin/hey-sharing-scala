@@ -1,4 +1,4 @@
-package domain.item
+package domain.item.Validation
 
 trait ItemValidationError extends Product with Serializable
 case object ItemNotFoundError extends ItemValidationError

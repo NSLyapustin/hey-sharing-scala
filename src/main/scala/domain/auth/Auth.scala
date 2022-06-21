@@ -2,6 +2,7 @@ package domain
 
 import cats.MonadError
 import cats.effect.Sync
+import domain.user.Models.{Role, User}
 import org.http4s.Response
 import tsec.authentication.{AugmentedJWT, BackingStore, IdentityStore, JWTAuthenticator, SecuredRequest, TSecAuthService}
 import tsec.authorization.BasicRBAC

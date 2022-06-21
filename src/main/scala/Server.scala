@@ -10,10 +10,13 @@ import tsec.passwordhashers.jca.BCrypt
 import config._
 import config.psDec
 import domain.Auth
-import domain.user.UserValidationInterpreter
+import domain.item.Service.ItemService
+import domain.item.Validation.ItemValidationInterpreter
 import domain.item._
-import domain.rent.{RentService, RentValidationInterpreter}
-import domain.users.UserService
+import domain.rent.Service.RentService
+import domain.rent.Validation.RentValidationInterpreter
+import domain.user.Service.UserService
+import domain.user.Validation.UserValidationInterpreter
 import infrastructure.endpoint.{ItemEndpoints, RentEndpoints, UserEndpoints}
 import infrastructure.repository.{DoobieAuthRepositoryInterpreter, DoobieItemRepositoryInterpreter, DoobieRentRepositoryInterpreter, DoobieUserRepositoryInterpreter}
 
@@ -39,8 +42,8 @@ object Server extends IOApp {
       authenticator = Auth.jwtAuthenticator[F, HMACSHA256](key, authRepo, userRepo)
       routeAuth = SecuredRequestHandler(authenticator)
       httpApp = Router(
-        "/rent" -> RentEndpoints.endpoints[F, HMACSHA256](rentService, routeAuth),
         "/items" -> ItemEndpoints.endpoints[F, HMACSHA256](itemService, routeAuth),
+        "/rent" -> RentEndpoints.endpoints[F, HMACSHA256](rentService, routeAuth),
         "/users" -> UserEndpoints
           .endpoints[F, BCrypt, HMACSHA256](userService, BCrypt.syncPasswordHasher[F], routeAuth),
       ).orNotFound

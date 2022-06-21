@@ -1,8 +1,10 @@
-package domain.user
+package domain.user.Validation
 
 import cats.Applicative
 import cats.data.EitherT
 import cats.implicits._
+import domain.user.Models.User
+import domain.user.Repo.UserRepositoryAlgebra
 
 class UserValidationInterpreter[F[_]: Applicative](userRepo: UserRepositoryAlgebra[F])
   extends UserValidationAlgebra[F] {

@@ -1,7 +1,6 @@
 package infrastructure.endpoint
 
 import cats.effect.Sync
-import domain.rent.{CannotRentItem, Rent, RentService}
 import org.http4s.{EntityDecoder, HttpRoutes}
 import org.http4s.dsl.Http4sDsl
 import tsec.jwt.algorithms.JWTMacAlgo
@@ -10,7 +9,10 @@ import io.circe.generic.auto._
 import org.http4s.circe.jsonOf
 import cats.syntax.all._
 import domain.Auth
-import domain.user.User
+import domain.rent.Models.Rent
+import domain.rent.Service.RentService
+import domain.rent.Validation.CannotRentItem
+import domain.user.Models.User
 import org.http4s.circe.CirceEntityCodec.circeEntityEncoder
 
 class RentEndpoints[F[_]: Sync, Auth: JWTMacAlgo] extends Http4sDsl[F] {

@@ -10,8 +10,11 @@ import org.http4s.dsl.Http4sDsl
 import org.http4s.{EntityDecoder, HttpRoutes}
 import domain._
 import domain.auth._
+import domain.user.Dto.UserResponseDto
+import domain.user.Models.User
+import domain.user.Service.UserService
+import domain.user.Validation.{UserAlreadyExistsError, UserAuthenticationFailedError, UserNotFoundError}
 import domain.user._
-import domain.users.UserService
 import tsec.common.Verified
 import tsec.jwt.algorithms.JWTMacAlgo
 import tsec.passwordhashers.{PasswordHash, PasswordHasher}
@@ -50,7 +53,7 @@ class UserEndpoints[F[_] : Sync, A, Auth: JWTMacAlgo] extends Http4sDsl[F] {
       } yield (user, token)
 
       action.value.flatMap {
-        case Right((user, token)) => Ok(user.asJson).map(auth.embed(_, token))
+        case Right((user, token)) => Ok(UserResponseDto.from(user).asJson).map(auth.embed(_, token))
         case Left(UserAuthenticationFailedError(name)) =>
           BadRequest(s"Authentication failed for user $name")
       }
@@ -69,7 +72,7 @@ class UserEndpoints[F[_] : Sync, A, Auth: JWTMacAlgo] extends Http4sDsl[F] {
       } yield result
 
       action.flatMap {
-        case Right(saved) => Ok(saved.asJson)
+        case Right(saved) => Ok(UserResponseDto.from(saved).asJson)
         case Left(UserAlreadyExistsError(existing)) =>
           Conflict(s"The user with user name ${existing.username} already exists")
       }
