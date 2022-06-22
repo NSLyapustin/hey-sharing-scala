@@ -2,6 +2,14 @@
 
 A service that allows you to rent and lease things instead of buying/selling them completely from other people
 
+## Упрощение работы преподам
+
+- Нет тестов
+- Токен невалидный после перезапуска сервера
+- Некорректное формирование запросов
+- Нет джарника
+- io.circe.generic.auto
+
 ## Features
 
 1. Create Item (POST -> localhost:8080/items)
