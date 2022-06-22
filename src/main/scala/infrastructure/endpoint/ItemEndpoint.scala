@@ -3,6 +3,7 @@ package infrastructure.endpoint
 import cats.effect.Sync
 import cats.syntax.all._
 import domain.Auth
+import domain.item.Dto.ItemCreateRequestDto
 import domain.item.Models.{Category, Item, ItemStatus}
 import domain.item.Service.ItemService
 import domain.item.Validation.ItemNotFoundError
@@ -21,6 +22,8 @@ import io.circe.syntax._
 
 class ItemEndpoints[F[_]: Sync, Auth: JWTMacAlgo] extends Http4sDsl[F] {
   implicit val itemDecoder: EntityDecoder[F, Item] = jsonOf
+
+  implicit val itemCreateRequestDto: EntityDecoder[F, ItemCreateRequestDto] = jsonOf
 
   implicit val statusQueryParamDecoder: QueryParamDecoder[ItemStatus] =
     QueryParamDecoder[String].map(ItemStatus.withName)
@@ -42,7 +45,8 @@ class ItemEndpoints[F[_]: Sync, Auth: JWTMacAlgo] extends Http4sDsl[F] {
       user.id match {
         case Some(id) => Ok(
           for {
-            item <- req.request.as[Item]
+            itemDto <- req.request.as[ItemCreateRequestDto]
+            item = Item.from(itemDto, Option(id))
             result <- itemService.createItem(item, id)
           } yield result
         )
@@ -53,7 +57,7 @@ class ItemEndpoints[F[_]: Sync, Auth: JWTMacAlgo] extends Http4sDsl[F] {
   private def getItemEndpoint(
                              itemService: ItemService[F]
                              ): HttpRoutes[F] = HttpRoutes.of[F] {
-    case req@GET -> Root / LongVar(id) =>
+    case req @ GET -> Root / LongVar(id) =>
       itemService.get(id).value.flatMap {
         case Right(item) => Ok(item.asJson)
         case Left(ItemNotFoundError) => NotFound(ItemNotFoundError)
