@@ -3,7 +3,7 @@ package infrastructure.endpoint
 import cats.effect.Sync
 import cats.syntax.all._
 import domain.Auth
-import domain.item.Dto.ItemCreateRequestDto
+import domain.item.Dto.{ItemCreateRequestDto, ItemUpdateRequestDto}
 import domain.item.Models.{Category, Item, ItemStatus}
 import domain.item.Service.ItemService
 import domain.item.Validation.ItemNotFoundError
@@ -24,6 +24,8 @@ class ItemEndpoints[F[_]: Sync, Auth: JWTMacAlgo] extends Http4sDsl[F] {
   implicit val itemDecoder: EntityDecoder[F, Item] = jsonOf
 
   implicit val itemCreateRequestDto: EntityDecoder[F, ItemCreateRequestDto] = jsonOf
+
+  implicit val itemUpdateRequestDto: EntityDecoder[F, ItemUpdateRequestDto] = jsonOf
 
   implicit val statusQueryParamDecoder: QueryParamDecoder[ItemStatus] =
     QueryParamDecoder[String].map(ItemStatus.withName)
@@ -82,7 +84,8 @@ class ItemEndpoints[F[_]: Sync, Auth: JWTMacAlgo] extends Http4sDsl[F] {
       user.id match {
         case Some(id) =>
           val result = for {
-            item <- req.request.as[Item]
+            itemDto <- req.request.as[ItemUpdateRequestDto]
+            item = Item.from(itemDto, Option(id))
             result <- itemService.update(item, id).value
           } yield result
           result.flatMap {
