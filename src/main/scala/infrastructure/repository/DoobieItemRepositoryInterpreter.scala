@@ -24,7 +24,7 @@ private object ItemSQL {
     VALUES (${item.name}, ${item.price}, ${item.image}, ${item.countOfViews}, ${item.description}, ${item.category}, ${item.status}, ${item.address}, ${userId})
 """.update
 
-  def update(item: Item, id: Long): Update0 = sql"""
+  def update(item: Item): Update0 = sql"""
     UPDATE ITEMS
     SET NAME = ${item.name},
         PRICE = ${item.price},
@@ -33,8 +33,7 @@ private object ItemSQL {
         DESCRIPTION = ${item.description},
         CATEGORY = ${item.category},
         STATUS = ${item.status},
-        ADDRESS = ${item.address},
-        USER_ID = ${id}
+        ADDRESS = ${item.address}
     WHERE ID = ${item.id}
 """.update
 
@@ -67,9 +66,9 @@ class DoobieItemRepositoryInterpreter[F[_]: Bracket[*[_], Throwable]](val xa: Tr
     .withUniqueGeneratedKeys[Long](columns = "id")
     .map(id => item.copy(id = id.some)).transact(xa)
 
-  override def update(item: Item, userId: Long): OptionT[F, Item] = OptionT
+  override def update(item: Item): OptionT[F, Item] = OptionT
     .fromOption[ConnectionIO](item.id)
-    .semiflatMap(id => ItemSQL.update(item, userId).run.as(item))
+    .semiflatMap(id => ItemSQL.update(item).run.as(item))
     .transact(xa)
 
   override def list(pageSize: Int, offset: Int): F[List[Item]] = paginate(pageSize, offset)(selectAll).to[List].transact(xa)

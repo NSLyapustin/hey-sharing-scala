@@ -13,20 +13,9 @@ class RentService[F[_]: Monad](rentRepo: RentRepositoryAlgebra[F], itemService: 
   def createRent(rent: Rent, itemId: Long, userId: Long): EitherT[F, CannotRentItem.type, Rent] =
     for {
       _ <- validation.unoccupied(itemId)
-      _ <- changeStatus(itemId, userId)
+      _ <- itemService.updateStatus(itemId, AtTheTenant).leftMap(_ => CannotRentItem)
       rent <- EitherT.liftF(rentRepo.create(rent, itemId, userId))
     } yield rent
-
-  private def changeStatus(itemId: Long, userId: Long): EitherT[F, CannotRentItem.type, Unit] = {
-    EitherT {
-      for {
-        item <- itemService.get(itemId).value.flatMap {
-          case Right(item) => item.copy(status = AtTheTenant).pure[F]
-        }
-        result <- itemService.update(item, userId).pure[F]
-      } yield Right()
-    }
-  }
 }
 
 object RentService {
