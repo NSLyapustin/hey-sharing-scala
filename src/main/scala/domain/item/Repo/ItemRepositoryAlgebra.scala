@@ -6,7 +6,7 @@ import domain.item.Models.Item
 trait ItemRepositoryAlgebra[F[_]] {
   def create(item: Item, userId: Long): F[Item]
 
-  def update(item: Item, userId: Long): OptionT[F, Item]
+  def update(item: Item): OptionT[F, Item]
 
   def get(itemId: Long): OptionT[F, Item]
 
